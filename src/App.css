@@ -1,5 +1,8 @@
-.App {
+.App{
   text-align: center;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .App-logo {
@@ -36,4 +39,37 @@
   100% {
     transform: translateY(0px);
   }
+}
+
+.displayUsers{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+}
+
+.userForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.formRow, .formActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  padding-bottom: 1rem;
+}
+
+.formButton {
+  width: 30%;
 }
