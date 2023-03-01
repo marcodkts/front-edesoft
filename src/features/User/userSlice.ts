@@ -1,10 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getUsers, addUser, updateUser, deleteUser } from './userApi'
 
-const initialState = {
+export interface UserState {
+    list: {
+        status: string,
+        values: any[],
+        isLoading: boolean
+    },
+    save: {
+        isSaving: boolean,
+        isDeleting: boolean
+    }
+}
+
+const initialState: UserState = {
     list: {
         status: "",
-        values: [] as any,
+        values: [],
         isLoading: false
     },
     save: {
@@ -17,9 +29,17 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        clearSuccessMessage: (state, payload) => {
-        // TODO: Update state to clear success message
+        createUser: (state, { payload }) => {
+            state.list.values.push(payload)
         },
+        updateUser: (state, { payload }) => {
+            const index = state.list.values.findIndex((user: any) => user.id === payload.id)
+            state.list.values[index] = payload
+        },
+        deleteUser: (state, { payload }) => {
+            const index = state.list.values.findIndex((user: any) => user.id === payload.id)
+            state.list.values.splice(index, 1)
+        }
     },
     extraReducers: {
         [getUsers.pending.type]: (state, action) => {
@@ -67,3 +87,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
+export const { createUser } = userSlice.actions;

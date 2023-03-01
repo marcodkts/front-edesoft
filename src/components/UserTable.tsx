@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { IUser } from "../models/user";
-import { RootState, useAppDispatch } from "../store";
+import { useAppSelector } from "../app/hooks";
+import { IUserList } from "../models/user";
+import { RootState, useAppDispatch } from "../app/store";
 import { getUsers } from "../features/User/userApi";
 
 export function UserTable() {
     const dispatch = useAppDispatch();
   
-    const userList = useSelector((state: RootState) => state.user.list.values);
+    const userList = useAppSelector((state: RootState) => state.user.list.values);
   
-    const isLoadingTable = useSelector(
+    const isLoadingTable = useAppSelector(
       (state: RootState) => state.user.list.isLoading
     );
     
@@ -39,7 +39,7 @@ export function UserTable() {
               </tr>
             </thead>
             <tbody>
-              {userList.map((user: IUser) => (
+              {userList.map((user: IUserList) => (
                 <tr key={user.id}>
                   <td>{user.id}</td>
                   <td>{user.username}</td>

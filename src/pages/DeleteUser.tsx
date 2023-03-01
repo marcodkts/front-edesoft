@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../app/hooks";
 import { IUser } from "../models/user";
-import { RootState, useAppDispatch } from "../store";
+import { RootState, useAppDispatch } from "../app/store";
 import {
   deleteUser,
 } from "../features/User/userApi";
 import { TextField, Button } from "@mui/material";
 
 function DeleteUser() {
-  const isDeleting = useSelector(
+  const isDeleting = useAppSelector(
     (state: RootState) => state.user.save.isDeleting
   );
 

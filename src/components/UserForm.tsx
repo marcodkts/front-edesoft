@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../app/hooks";
 import { IUser } from "../models/user";
-import { RootState, useAppDispatch } from "../store";
+import { RootState, useAppDispatch } from "../app/store";
 import { addUser, updateUser } from "../features/User/userApi";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
@@ -11,7 +11,7 @@ type UserDataProps = {
 };
 
 export const UserForm: React.FC<UserDataProps> = ( {userData} ) => {
-  const isSaving = useSelector((state: RootState) => state.user.save.isSaving);
+  const isSaving = useAppSelector((state: RootState) => state.user.save.isSaving);
   const dispatch = useAppDispatch();
 
   const [user, setUser] = useState<IUser>(userData || {

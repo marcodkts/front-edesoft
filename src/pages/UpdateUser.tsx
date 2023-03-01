@@ -6,13 +6,13 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select'
-import { useSelector } from "react-redux";
-import { RootState, useAppDispatch } from "../store";
+import { useAppSelector } from "../app/hooks";
+import { RootState, useAppDispatch } from "../app/store";
 import { getUsers } from "../features/User/userApi";
 import Button from "@mui/material/Button";
 
 function UpdateUser() {
-  const isSaving = useSelector((state: RootState) => state.user.save.isSaving);
+  const isSaving = useAppSelector((state: RootState) => state.user.save.isSaving);
   
   const [user, setUser] = useState<IUser>({
     id: 0,
@@ -37,7 +37,7 @@ function UpdateUser() {
   });
   const dispatch = useAppDispatch();
   
-  const userList = useSelector((state: RootState) => state.user.list.values);
+  const userList = useAppSelector((state: RootState) => state.user.list.values);
   
   useEffect(() => {
       dispatch(getUsers());
